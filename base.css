@@ -1,0 +1,27 @@
+/* 
+    Document   : base
+    Created on : Jan 1, 2013, 10:12:39 PM
+    Author     : bozheville
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#container {
+    width: 300px;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.table{
+    width: 100%;
+}
+.input_date{
+    width: 50px;
+}
+.input_task{
+    width: 150px;
+}

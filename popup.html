@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Organizer</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script src="popup.js"></script>
+        <link type="text/css" href="base.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="container">
+            <table class="table">
+                <tr><td>Дата</td><td>Время</td><td>Задача</td></tr>
+                <tr>
+                    <td><input type="text" id="new_date" value="" class="input_date" /></td>
+                    <td><input type="text" id="new_time" value="" class="input_date" /></td>
+                    <td><input type="text" id="new_task" value="" class="input_task" /></td>
+                </tr>
+                <tr><th colspan="3" id="today_date">Date</th></tr>
+                <tr><td class="time">Время</td><td colspan="2" class="task">Задача</td></tr>
+            </table>
+        </div>
+    </body>
+</html>
