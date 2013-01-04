@@ -6,25 +6,13 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
-}
-
+root {display: block;}
 #container {
     width: 300px;
     max-height: 350px;
     overflow-y: scroll;
 }
-
-.table{
-    width: 100%;
-}
-.input_date{
-    width: 50px;
-}
-.input_task{
-    width: 120px;
-}
-.done{
-    background-color: #f1f1f1;
-}
+.table{width: 100%;}
+.input_date{width: 50px;}
+.input_task{width: 120px;}
+.done{text-decoration: line-through;}

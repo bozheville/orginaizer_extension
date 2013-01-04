@@ -1,7 +1,7 @@
 var storage = chrome.storage.sync;
+storage.remove("tasks");
 var tasks = new Array();
 $(function(){
-    getTodayTasks();
     var today = new Date();
     var now_hours = today.getHours() < 10 ? "0" + today.getHours() :  today.getHours();
     var now_minutes = today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
@@ -10,17 +10,19 @@ $(function(){
         if(items.tasks){
             tasks = items.tasks;
             var today_tasks = getTodayTasks(tasks);
-            for(var i in today_tasks){
-                var this_time = today_tasks[i].time.replace(":", "");
-                var add = this_time > now_time ? "" : ' class="done"';
-                var add_html = '<tr'+add+'><td class="time">'+today_tasks[i].time+'</td><td colspan="3" class="task">'+today_tasks[i].task+'</td></tr>';
-                $("table").append(add_html);
+            if(today_tasks.length >0){
+                for(var i in today_tasks){
+                    var this_time = today_tasks[i].time.replace(":", "");
+                    var add = this_time > now_time ? "" : ' class="done"';
+                    var add_html = '<li'+add+'><strong>'+today_tasks[i].time+'</strong> '+today_tasks[i].task+'</li>';
+                    $("ul").append(add_html);
+                }
             }
         }
     });
     setCheckbox();
     setTimeNotifications("a");
-    $("#today_date").html(today.getDate()+"-"+(today.getMonth())+"-"+today.getFullYear());
+    $("#today_date").html(today.getDate()+"."+(parseInt(today.getMonth()) + 1)+"."+today.getFullYear());
     $("#n_show").click(function(){
         setCookie("n_show", document.getElementById("n_show").checked);
     });
@@ -41,7 +43,9 @@ var getTodayTasks = function(tasks){
             today_tasks[today_tasks.length] = tasks[i];
         }
     }
-    today_tasks = sortTasks(today_tasks);
+    if(today_tasks.length > 0){
+        today_tasks = sortTasks(today_tasks);
+    }
     return today_tasks;
 }
 
@@ -61,17 +65,19 @@ var addTask = function(){
 
 
 var sortTasks = function(tasks){
-    var swapped = true;
-    while (swapped) {
-        swapped = false;
-        for (var i=0; i < tasks.length-1; i++) {
-            var this_time = tasks[i].time.replace(":", "");
-            var next_time = tasks[i+1].time.replace(":", "");
-            if (this_time > next_time) {
-                var temp = tasks[i];
-                tasks[i] = tasks[i+1];
-                tasks[i+1] = temp;
-                swapped = true;
+    if(tasks.length > 0){
+        var swapped = true;
+        while (swapped) {
+            swapped = false;
+            for (var i=0; i < tasks.length-1; i++) {
+                var this_time = tasks[i].time.replace(":", "");
+                var next_time = tasks[i+1].time.replace(":", "");
+                if (this_time > next_time) {
+                    var temp = tasks[i];
+                    tasks[i] = tasks[i+1];
+                    tasks[i+1] = temp;
+                    swapped = true;
+                }
             }
         }
     }

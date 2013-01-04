@@ -9,6 +9,7 @@
     </head>
     <body>
         <div id="container">
+            <div id="today_date">Date</div>
             <table class="table">
                 <tr><td>Дата</td><td>Время</td><td>Задача</td></tr>
                 <tr>
@@ -17,10 +18,10 @@
                     <td><input type="text" id="new_task" value="" class="input_task" /></td>
                     <td><button id="add_task">+</button></td>
                 </tr>
-                <tr><th colspan="3" id="today_date">Date</th></tr>
-                <tr><td class="time">Время</td><td colspan="3" class="task">Задача</td></tr>
             </table>
-            <div>
+            <ul>
+            </ul>
+            <div style="display: none;">
                 <input type="checkbox" id="n_show" checked="checked" />
                 <input type="text" id="n_time" class="input_date" value="" />
                 Показывать уведомления
