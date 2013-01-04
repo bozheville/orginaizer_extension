@@ -1,7 +1,6 @@
 var storage = chrome.storage.sync;
 var tasks = new Array();
 $(function(){
-    getTodayTasks();
     var today = new Date();
     var now_hours = today.getHours() < 10 ? "0" + today.getHours() :  today.getHours();
     var now_minutes = today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
@@ -22,7 +21,13 @@ $(function(){
     setTimeNotifications("a");
     $("#today_date").html(today.getDate()+"-"+(today.getMonth())+"-"+today.getFullYear());
     $("#n_show").click(function(){
-        setCookie("n_show", document.getElementById("n_show").checked);
+        var checked =document.getElementById("n_show").checked
+        setCookie("n_show", checked);
+        if(checked){
+            $("#n_time").show();
+        } else{
+            $("#n_time").hide();
+        }
     });
     $("#n_time").change(function(){
         setTimeNotifications($(this).val());
@@ -102,6 +107,11 @@ var validateField = function(val, type){
 var setCheckbox = function(){
     var val = getCookie("n_show")
     document.getElementById('n_show').checked = ((val == "true") ? true : false);
+    if(val){
+        $("#n_time").show();
+    } else{
+        $("#n_time").hide();
+    }
 }
 
 var setTimeNotifications = function(val){
