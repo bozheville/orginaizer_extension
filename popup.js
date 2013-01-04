@@ -24,13 +24,7 @@ $(function(){
     setTimeNotifications("a");
     $("#today_date").html(today.getDate()+"."+(parseInt(today.getMonth()) + 1)+"."+today.getFullYear());
     $("#n_show").click(function(){
-        var checked =document.getElementById("n_show").checked
-        setCookie("n_show", checked);
-        if(checked){
-            $("#n_time").show();
-        } else{
-            $("#n_time").hide();
-        }
+        setCookie("n_show", document.getElementById("n_show").checked);
     });
     $("#n_time").change(function(){
         setTimeNotifications($(this).val());
@@ -114,11 +108,6 @@ var validateField = function(val, type){
 var setCheckbox = function(){
     var val = getCookie("n_show")
     document.getElementById('n_show').checked = ((val == "true") ? true : false);
-    if(val){
-        $("#n_time").show();
-    } else{
-        $("#n_time").hide();
-    }
 }
 
 var setTimeNotifications = function(val){
