@@ -1,5 +1,4 @@
 var storage = chrome.storage.sync;
-storage.remove("tasks");
 var tasks = new Array();
 $(function(){
     var today = new Date();
@@ -7,6 +6,7 @@ $(function(){
     var now_minutes = today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
     var now_time = now_hours + "" + now_minutes;
     storage.get("tasks",function(items){
+        console.log(items);
         if(items.tasks){
             tasks = items.tasks;
             var today_tasks = getTodayTasks(tasks);
