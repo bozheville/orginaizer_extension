@@ -2,7 +2,7 @@ var storage = chrome.storage.sync;
 var tasks = new Array();
 setInterval(function() {
     storage.get("tasks",function(items){
-        if(items.tasks && getCookie("n_show") == "true"){
+        if(items.tasks && getCookie("show_notifications") == "true"){
             tasks = getTodayTasks(items.tasks);
             if(window.webkitNotifications){
                 var texts = getNextTask(tasks);
@@ -24,8 +24,7 @@ var getNextTask = function(tasks){
         var task_date = new Date(parseInt(date[2]), parseInt(date[1]-1), parseInt(date[0]), parseInt(time[0]), parseInt(time[1]), 0, 0);
         task_date = task_date.getTime();
         var delta = Math.round((task_date-now)/60000);
-        console.log(delta);
-        if(delta == getCookie("n_time")){
+        if(delta == getCookie("when_to_notify")){
             next[next.length] = tasks[i].time + " - " + tasks[i].task;
         }
     }

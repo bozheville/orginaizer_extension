@@ -21,13 +21,13 @@ $(function(){
         }
     });
     setCheckbox();
-    setTimeNotifications("a");
+    setWhenToNotify(getCookie("when_to_notify"));
     $("#today_date").html(today.getDate()+"."+(parseInt(today.getMonth()) + 1)+"."+today.getFullYear());
-    $("#n_show").click(function(){
-        setCookie("n_show", document.getElementById("n_show").checked);
+    $("#show_notifications").click(function(){
+        setCookie("show_notifications", document.getElementById("show_notifications").checked);
     });
-    $("#n_time").change(function(){
-        setTimeNotifications($(this).val());
+    $("#when_to_notify").change(function(){
+        setWhenToNotify($(this).val());
     });
     $("#add_task").click(function(){
         addTask();
@@ -106,16 +106,16 @@ var validateField = function(val, type){
 
 
 var setCheckbox = function(){
-    var val = getCookie("n_show")
-    document.getElementById('n_show').checked = ((val == "true") ? true : false);
+    var val = getCookie("show_notifications")
+    document.getElementById('show_notifications').checked = ((val == "true") ? true : false);
 }
 
-var setTimeNotifications = function(val){
-    var last_val = getCookie("n_time");
+var setWhenToNotify = function(val){
+    var last_val = getCookie("when_to_notify");
     last_val = last_val != "undefined"? last_val: 0;
     val = (parseInt(val)==val && val <=120) ? val : last_val;
-    setCookie("n_time", val);
-    $("#n_time").val(val);
+    setCookie("when_to_notify", val);
+    $("#when_to_notify").val(val);
 }
 
 var setCookie = function(c_name,value,exdays){
